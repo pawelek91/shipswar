@@ -2,17 +2,19 @@ import ShipType from './shipType';
 import IBoardAssignable from './IBoardAssignable';
 import Coordinates from './coordinates';
 import IOccupier from './IOccupier';
+import ShootType from './shootType';
 
-class Ship  implements IBoardAssignable, IOccupier{
+abstract class Ship  implements IBoardAssignable, IOccupier{
     fields:Coordinates[];
     id:string;
     length:number;
     isDestroyed?:boolean = false;
-    
+    abstract type:ShipType;
+    fieldType: ShootType = ShootType.None;
     protected constructor(){
         this.isDestroyed = false;
-        this.length = 0;
         this.fields = new Array<Coordinates>();
+        this.length = 0;
         this.id = `ship_${this.length}`;
     }
 
@@ -82,26 +84,31 @@ class Ship  implements IBoardAssignable, IOccupier{
             case ShipType.m : return new ShipM();
             case ShipType.l : return new ShipL();
             case ShipType.xl : return new ShipXL();
-            case ShipType.xll : return new ShipXXL();
+            case ShipType.xxl : return new ShipXXL();
             default: throw Error('wrong ship type');
         }
     }
 }
 
 class ShipS extends Ship implements IBoardAssignable{
+    type: ShipType=  ShipType.s;
     length = 1
 }
 
 class ShipM extends Ship implements IBoardAssignable{
+    type: ShipType=  ShipType.m;
     length = 2
 }
 class ShipL extends Ship implements IBoardAssignable{
+    type: ShipType=  ShipType.l;
     length = 3
 }
 class ShipXL extends Ship implements IBoardAssignable{
+    type: ShipType=  ShipType.xl;
     length = 4
 }
 class ShipXXL extends Ship implements IBoardAssignable{
+    type: ShipType=  ShipType.xxl;
     length = 5;
 }
 

@@ -19,7 +19,7 @@ test('place ship S at empty board', () => {
   
 test('place ship XL at empty board', () => {
     const board = new Board(BoardType.playerShipsBoard);
-    const shipS = Ship.createShip(ShipType.xll);
+    const shipS = Ship.createShip(ShipType.xxl);
     shipS.assignToBoard({x:1,y:1},{x:1,y:5});
     board.setOccupier(shipS);
     expect(board.isOccupied({x:1,y:1})).toBe(true);
@@ -31,7 +31,7 @@ test('place ship XL at empty board', () => {
     
 test('place ship XL at empty board', () => {
     const board = new Board(BoardType.playerShipsBoard);
-    const shipS = Ship.createShip(ShipType.xll);
+    const shipS = Ship.createShip(ShipType.xxl);
     shipS.assignToBoard({x:1,y:1},{x:5,y:1});
     board.setOccupier(shipS);
     expect(board.isOccupied({x:1,y:1})).toBe(true);
@@ -43,8 +43,8 @@ test('place ship XL at empty board', () => {
 
   test('place ship XL at occupier board with no conflicts', () => {
     const board = new Board(BoardType.playerShipsBoard);
-    const ship1 = Ship.createShip(ShipType.xll);
-    const ship2 = Ship.createShip(ShipType.xll);
+    const ship1 = Ship.createShip(ShipType.xxl);
+    const ship2 = Ship.createShip(ShipType.xxl);
     
     ship1.assignToBoard({x:1,y:1},{x:5,y:1});
     board.setOccupier(ship1);
@@ -61,8 +61,8 @@ test('place ship XL at empty board', () => {
 
   test('place ship XL at occupier board with conflict should throw error', () => {
     const board = new Board(BoardType.playerShipsBoard);
-    const ship1 = Ship.createShip(ShipType.xll);
-    const ship2 = Ship.createShip(ShipType.xll);
+    const ship1 = Ship.createShip(ShipType.xxl);
+    const ship2 = Ship.createShip(ShipType.xxl);
     
     ship1.assignToBoard({x:1,y:1},{x:5,y:1});
     board.setOccupier(ship1);

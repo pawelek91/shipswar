@@ -48,7 +48,7 @@ class Board{
         }
 
         else if(sameLineInY){
-            for(let i= startField.y; i<=endField.x;i++){
+            for(let i= startField.x; i<=endField.x;i++){
                 const field = this.fields.find(field=> field.x == i && field.y == startField.y) as Coordinates;
 
                 if(field.isOccupied){

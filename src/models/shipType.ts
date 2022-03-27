@@ -3,6 +3,6 @@ enum ShipType{
     m,
     l,
     xl,
-    xll
+    xxl
 }
 export default ShipType

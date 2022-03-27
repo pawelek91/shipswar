@@ -66,13 +66,13 @@ test('create XL ship with wrong coodinates should throw error', () => {
 
 
 test('create xll ship and place', () => {
-  const shipM = Ship.createShip(ShipType.xll);
+  const shipM = Ship.createShip(ShipType.xxl);
   shipM.assignToBoard({x:1,y:1},{x:5,y:1});
   expect(shipM.validateCanBeAssigned()).toBe(true);
 });
 
 test('create xxl ship with wrong coodinates should throw error', () => {
-  const shipM = Ship.createShip(ShipType.xll);
+  const shipM = Ship.createShip(ShipType.xxl);
   const assignWrongCoordinates = () =>{
     shipM.assignToBoard({x:1,y:1},{x:2,y:4})
     shipM.validateCanBeAssigned();
