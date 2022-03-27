@@ -1,10 +1,11 @@
 import ShipType from './shipType';
 import IBoardAssignable from './IBoardAssignable';
 import Coordinates from './coordinates';
+import IOccupier from './IOccupier';
 
-class Ship  implements IBoardAssignable
-{
+class Ship  implements IBoardAssignable, IOccupier{
     fields:Coordinates[];
+    id:string;
     length:number;
     isDestroyed?:boolean = false;
     
@@ -12,6 +13,7 @@ class Ship  implements IBoardAssignable
         this.isDestroyed = false;
         this.length = 0;
         this.fields = new Array<Coordinates>();
+        this.id = `ship_${this.length}`;
     }
 
     public assignToBoard = (start:Coordinates, end:Coordinates) => {
@@ -32,6 +34,16 @@ class Ship  implements IBoardAssignable
         else if(start.y == end.y){
             for(let i=0;i<this.length;i++){
                 this.fields[i] = {x:start.x+i,y:start.y,}
+            }
+
+            
+            if(Math.abs(this.fields[0].x - this.fields[this.length-1].x) != this.length-1
+                &&  Math.abs(this.fields[0].y - this.fields[this.length-1].y) != this.length-1){
+                throw new Error('wrong coordinates')
+            }
+
+            if(start.x != this.fields[0].x || start.y != this.fields[0].y || end.x != this.fields[this.length-1].x || end.y != this.fields[this.length-1].y){
+                throw new Error('wrong coordinates')
             }
         }
         

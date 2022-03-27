@@ -1,6 +1,6 @@
-enum boardType{
+enum BoardType{
     playerShipsBoard,
     playerAttackBoard,
 }
 
-export default boardType
+export default BoardType
