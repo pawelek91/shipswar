@@ -1,7 +1,7 @@
 import BoardType from "./boardType";
 import Coordinates from "./coordinates";
 import IOccupier from "./IOccupier";
-
+import ShootType from "./shootType";
 class Board{
     public static xLength = 8;
     public static yLength = 8;
@@ -17,7 +17,8 @@ class Board{
                 this.fields.push({
                     x:i,
                     y:j,
-                    isOccupied:false
+                    isOccupied:false,
+                    occupier: {fieldType: ShootType.None, fields:[],id:''}
                 })
             }
         }

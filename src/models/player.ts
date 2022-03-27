@@ -1,6 +1,7 @@
 import Board from "./board";
 import BoardType from "./boardType";
 import Coordinates from "./coordinates";
+import IOccupier from "./IOccupier";
 import { Ship } from "./ship";
 import ShipType from "./shipType";
 import ShootType from "./shootType";
@@ -10,7 +11,7 @@ export default class Player{
     boardToShoot: Board;
     ships:Ship[];
     readonly name:string;
-
+    
     constructor(name:string){
         this.name = name;
         this.boardWithShips = new Board(BoardType.playerShipsBoard);
@@ -23,8 +24,7 @@ export default class Player{
         if(field.isOccupied){
             throw new Error('already shooted there');
         }
-
-        const  shootType = enemy.boardWithShips.isOccupied(coordinate) ? ShootType.Goal : ShootType.Missed
+        const shootType = enemy.boardWithShips.isOccupied(coordinate) ? ShootType.Goal : ShootType.Missed
 
         field.isOccupied = true;
         field.occupier ={
@@ -32,6 +32,11 @@ export default class Player{
             id: 'shoot',
             fieldType: shootType,
         }
+
+        if(shootType == ShootType.Goal){
+            enemy.onBeeingShooted(coordinate);
+        }
+        
     }
 
     public addShip(shipType:ShipType, coordinatesStart:Coordinates, coordinatesEnd:Coordinates){
@@ -55,6 +60,25 @@ export default class Player{
         return placed;
     }
 
+    public onBeeingShooted(coordinate:Coordinates){
+        const shootedField = this.boardWithShips.fields.find(field=>field.x == coordinate.x && field.y == coordinate.y) as Coordinates;
+        
+        if(!shootedField?.isOccupied){
+            throw new Error('should be occupied')
+        };
+
+        const ship = shootedField.occupier;
+        ship.fieldType = ShootType.Goal;
+        const shootedShipCoordinates = this.boardWithShips.fields.filter(x=>x.occupier?.id == ship.id);
+        if(shootedShipCoordinates.every(field=>{field.occupier?.fieldType == ShootType.Goal})){
+            const playerShip = this.ships.find(x=>x.id == ship.id) as Ship;
+            playerShip.isDestroyed = true;
+        }
+    }
+
+    public hasLost(){
+        return this.ships.every(ship=>ship.isDestroyed);
+    }
 
 
 }

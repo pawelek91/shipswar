@@ -4,6 +4,6 @@ export default interface Coordinates{
     x:number;
     y:number;
     isOccupied?:boolean;
-    occupier?:IOccupier;
+    occupier:IOccupier;
 }
 
