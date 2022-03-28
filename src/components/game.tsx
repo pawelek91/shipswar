@@ -7,17 +7,12 @@ import Board from "./board";
 
 
 const Game = () =>{
-    useEffect(()=>{
-        shipPlacerSim.PlaceAllShipsOnBoard(player1);
-        shipPlacerSim.PlaceAllShipsOnBoard(player2);
-    },[])
-    const helper = new BoardShipCoordiantesHelper();
-    const shipPlacerSim = new ShipPlacerSimulator(helper);
     const player1 = new Player('player 1');
     const player2 = new Player('player 2');
+    const helper = new BoardShipCoordiantesHelper();
+    const shipPlacerSim = new ShipPlacerSimulator(helper);
     shipPlacerSim.PlaceAllShipsOnBoard(player1);
     shipPlacerSim.PlaceAllShipsOnBoard(player2);
-
     
     return(
     <>
