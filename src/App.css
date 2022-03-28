@@ -3,7 +3,5 @@
   .chess-board td { border: 1px solid; width: 2em; height: 2em; }
   .chess-board .light { background: #eee; }
   .chess-board .dark { background: #000; }
-  table {
-    float:left;
-    width:40%;
-}
+  .column{width: 40%; float:left}
+  .ship{background: greenyellow;}
