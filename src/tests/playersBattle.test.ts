@@ -1,16 +1,15 @@
-import exp from 'constants';
 import Coordinates from '../models/coordinates';
 import Player from '../models/player';
 import ShipType from '../models/shipType';
 import ShootType from '../models/shootType';
-
+import {coordinateXY} from '../models/helpers/BoardShipCoordinatesHelper';
 
 
 test('create players and shoot missing fire', () => {
     const player1 = createPlayer1WIthShips();
     const player2 = createPlayer2WIthShips();
 
-    const coordinate = coordinateToShoot(7,7);
+    const coordinate = coordinateXY(7,7);
     player1.shootToEnemy( coordinate, player2);
     const shootedField = player1.boardToShoot.fields.find(field=>field.x == coordinate.x && field.y == coordinate.y) as Coordinates;
 
@@ -44,30 +43,24 @@ test('destroy enemy ships and wins',()=>{
     expect(player2.ships.every(ship=>ship.isDestroyed)).toBe(true);
 })
 
-const coordinateToShoot = (x:number,y:number) =>{
-    return <Coordinates>{
-        occupier: {fieldType:ShootType.None, fields:[],id:''},
-        x,
-        y
-    }
-}
+
 
 const createPlayer1WIthShips = () :Player =>{
     const player1 = new Player("testPlayer");
-    player1.addShip(ShipType.s, coordinateToShoot(1,1),coordinateToShoot(1,1));
-    player1.addShip(ShipType.m, coordinateToShoot(2,1),coordinateToShoot(3,1));
-    player1.addShip(ShipType.l, coordinateToShoot(4,1),coordinateToShoot(6,1));
-    player1.addShip(ShipType.xl, coordinateToShoot(1,2),coordinateToShoot(4,2));
-    player1.addShip(ShipType.xxl, coordinateToShoot(1,3),coordinateToShoot(5,3));
+    player1.addShip(ShipType.s, coordinateXY(1,1),coordinateXY(1,1));
+    player1.addShip(ShipType.m, coordinateXY(2,1),coordinateXY(3,1));
+    player1.addShip(ShipType.l, coordinateXY(4,1),coordinateXY(6,1));
+    player1.addShip(ShipType.xl, coordinateXY(1,2),coordinateXY(4,2));
+    player1.addShip(ShipType.xxl, coordinateXY(1,3),coordinateXY(5,3));
     return player1;
 }
 
 const createPlayer2WIthShips = () :Player =>{
     const player2 = new Player("testPlayer");
-    player2.addShip(ShipType.s, coordinateToShoot(1,1),coordinateToShoot(1,1));
-    player2.addShip(ShipType.m, coordinateToShoot(3,1),coordinateToShoot(4,1));
-    player2.addShip(ShipType.l, coordinateToShoot(5,1),coordinateToShoot(7,1));
-    player2.addShip(ShipType.xl, coordinateToShoot(1,3),coordinateToShoot(4,3));
-    player2.addShip(ShipType.xxl, coordinateToShoot(1,5),coordinateToShoot(5,5));
+    player2.addShip(ShipType.s, coordinateXY(1,1),coordinateXY(1,1));
+    player2.addShip(ShipType.m, coordinateXY(3,1),coordinateXY(4,1));
+    player2.addShip(ShipType.l, coordinateXY(5,1),coordinateXY(7,1));
+    player2.addShip(ShipType.xl, coordinateXY(1,3),coordinateXY(4,3));
+    player2.addShip(ShipType.xxl, coordinateXY(1,5),coordinateXY(5,5));
     return player2;
 }

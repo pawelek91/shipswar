@@ -9,36 +9,36 @@ import exp from "constants";
 test('place ship S at empty board', () => {
     const board = new Board(BoardType.playerShipsBoard);
     const shipS = Ship.createShip(ShipType.s);
-    shipS.assignToBoard({x:1,y:1},{x:1,y:1});
+    shipS.assignToBoardXY({x:1,y:1},{x:1,y:1});
     board.setOccupier(shipS);
-    const isOccupied = board.isOccupied({x:1,y:1});
-    expect(board.isOccupied({x:1,y:1})).toBe(true);
-    expect(board.isOccupied({x:1,y:2})).toBe(false);
+    const isOccupied = board.isOccupiedXY({x:1,y:1});
+    expect(board.isOccupiedXY({x:1,y:1})).toBe(true);
+    expect(board.isOccupiedXY({x:1,y:2})).toBe(false);
   });
 
   
 test('place ship XL at empty board', () => {
     const board = new Board(BoardType.playerShipsBoard);
     const shipS = Ship.createShip(ShipType.xxl);
-    shipS.assignToBoard({x:1,y:1},{x:1,y:5});
+    shipS.assignToBoardXY({x:1,y:1},{x:1,y:5});
     board.setOccupier(shipS);
-    expect(board.isOccupied({x:1,y:1})).toBe(true);
-    expect(board.isOccupied({x:1,y:3})).toBe(true);
-    expect(board.isOccupied({x:1,y:5})).toBe(true);
-    expect(board.isOccupied({x:2,y:1})).toBe(false);
+    expect(board.isOccupiedXY({x:1,y:1})).toBe(true);
+    expect(board.isOccupiedXY({x:1,y:3})).toBe(true);
+    expect(board.isOccupiedXY({x:1,y:5})).toBe(true);
+    expect(board.isOccupiedXY({x:2,y:1})).toBe(false);
   });
 
     
 test('place ship XL at empty board', () => {
     const board = new Board(BoardType.playerShipsBoard);
     const shipS = Ship.createShip(ShipType.xxl);
-    shipS.assignToBoard({x:1,y:1},{x:5,y:1});
+    shipS.assignToBoardXY({x:1,y:1},{x:5,y:1});
     board.setOccupier(shipS);
-    expect(board.isOccupied({x:1,y:1})).toBe(true);
-    expect(board.isOccupied({x:2,y:1})).toBe(true);
-    expect(board.isOccupied({x:3,y:1})).toBe(true);
-    expect(board.isOccupied({x:4,y:1})).toBe(true);
-    expect(board.isOccupied({x:1,y:2})).toBe(false);
+    expect(board.isOccupiedXY({x:1,y:1})).toBe(true);
+    expect(board.isOccupiedXY({x:2,y:1})).toBe(true);
+    expect(board.isOccupiedXY({x:3,y:1})).toBe(true);
+    expect(board.isOccupiedXY({x:4,y:1})).toBe(true);
+    expect(board.isOccupiedXY({x:1,y:2})).toBe(false);
   });
 
   test('place ship XL at occupier board with no conflicts', () => {
@@ -46,17 +46,17 @@ test('place ship XL at empty board', () => {
     const ship1 = Ship.createShip(ShipType.xxl);
     const ship2 = Ship.createShip(ShipType.xxl);
     
-    ship1.assignToBoard({x:1,y:1},{x:5,y:1});
+    ship1.assignToBoardXY({x:1,y:1},{x:5,y:1});
     board.setOccupier(ship1);
 
-    ship2.assignToBoard({x:2,y:2},{x:2,y:6});
+    ship2.assignToBoardXY({x:2,y:2},{x:2,y:6});
     board.setOccupier(ship2);
 
-    expect(board.isOccupied({x:1,y:1})).toBe(true);
-    expect(board.isOccupied({x:2,y:1})).toBe(true);
-    expect(board.isOccupied({x:3,y:1})).toBe(true);
-    expect(board.isOccupied({x:4,y:1})).toBe(true);
-    expect(board.isOccupied({x:1,y:2})).toBe(false);
+    expect(board.isOccupiedXY({x:1,y:1})).toBe(true);
+    expect(board.isOccupiedXY({x:2,y:1})).toBe(true);
+    expect(board.isOccupiedXY({x:3,y:1})).toBe(true);
+    expect(board.isOccupiedXY({x:4,y:1})).toBe(true);
+    expect(board.isOccupiedXY({x:1,y:2})).toBe(false);
   });
 
   test('place ship XL at occupier board with conflict should throw error', () => {
@@ -64,11 +64,11 @@ test('place ship XL at empty board', () => {
     const ship1 = Ship.createShip(ShipType.xxl);
     const ship2 = Ship.createShip(ShipType.xxl);
     
-    ship1.assignToBoard({x:1,y:1},{x:5,y:1});
+    ship1.assignToBoardXY({x:1,y:1},{x:5,y:1});
     board.setOccupier(ship1);
 
     const funcCauseError = () =>{
-        ship2.assignToBoard({x:1,y:2},{x:1,y:6});
+        ship2.assignToBoardXY({x:1,y:2},{x:1,y:6});
         board.setOccupier(ship2);
     }
     expect(funcCauseError).toThrow();

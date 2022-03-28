@@ -7,3 +7,7 @@ export default interface Coordinates{
     occupier:IOccupier;
 }
 
+export interface CoordinatesXY{
+    x:number;
+    y:number;
+}

@@ -1,6 +1,7 @@
 import Board from "../board";
 import Coordinates from "../coordinates";
 import ShipType from "../shipType";
+import ShootType from "../shootType";
 
 export default class BoardShipCoordiantesHelper{
     getCoordinates = (coordinates:string) : Coordinates =>{
@@ -23,5 +24,13 @@ export default class BoardShipCoordiantesHelper{
         const min = 0;
         const max = Board.xLength-1;
         return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+}
+
+export const coordinateXY = (x:number,y:number) =>{
+    return <Coordinates>{
+        occupier: {fieldType:ShootType.None, fields:[],id:''},
+        x,
+        y
     }
 }

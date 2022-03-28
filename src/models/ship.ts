@@ -1,9 +1,9 @@
 import ShipType from './shipType';
 import IBoardAssignable from './IBoardAssignable';
-import Coordinates from './coordinates';
+import Coordinates, { CoordinatesXY } from './coordinates';
 import IOccupier from './IOccupier';
 import ShootType from './shootType';
-
+import {coordinateXY} from '../models/helpers/BoardShipCoordinatesHelper';
 abstract class Ship  implements IBoardAssignable, IOccupier{
     fields:Coordinates[];
     id:string;
@@ -18,6 +18,9 @@ abstract class Ship  implements IBoardAssignable, IOccupier{
         this.id ='';
     }
 
+    public assignToBoardXY(start: CoordinatesXY, end:CoordinatesXY){
+        this.assignToBoard(coordinateXY(start.x,start.y),coordinateXY(end.x,end.y));
+    }
     public assignToBoard = (start:Coordinates, end:Coordinates) => {
         if(start.x == end.x){
             for(let i=0;i<this.length;i++){

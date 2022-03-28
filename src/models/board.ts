@@ -1,5 +1,5 @@
 import BoardType from "./boardType";
-import Coordinates from "./coordinates";
+import Coordinates, { CoordinatesXY } from "./coordinates";
 import IOccupier from "./IOccupier";
 import ShootType from "./shootType";
 class Board{
@@ -80,6 +80,10 @@ class Board{
 
 
     public isOccupied(coordinates:Coordinates){
+        return this.fields.find(field=>field.x == coordinates.x && field.y == coordinates.y)?.isOccupied;
+    }
+
+    public isOccupiedXY(coordinates: CoordinatesXY){
         return this.fields.find(field=>field.x == coordinates.x && field.y == coordinates.y)?.isOccupied;
     }
 }

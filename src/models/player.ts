@@ -1,11 +1,11 @@
 import Board from "./board";
 import BoardType from "./boardType";
-import Coordinates from "./coordinates";
+import Coordinates, { CoordinatesXY } from "./coordinates";
 import IOccupier from "./IOccupier";
 import { Ship } from "./ship";
 import ShipType from "./shipType";
 import ShootType from "./shootType";
-
+import {coordinateXY} from '../models/helpers/BoardShipCoordinatesHelper';
 export default class Player{
     boardWithShips:Board;
     boardToShoot: Board;
@@ -37,6 +37,12 @@ export default class Player{
             enemy.onBeeingShooted(coordinate);
         }
         
+    }
+
+    public addShipXY(shipType:ShipType, coordinatesStart:CoordinatesXY, coordinatesEnd:CoordinatesXY){
+        const start = coordinateXY(coordinatesStart.x,coordinatesStart.y);
+        const end = coordinateXY(coordinatesEnd.x,coordinatesEnd.y);
+        this.addShip(shipType,start,end);
     }
 
     public addShip(shipType:ShipType, coordinatesStart:Coordinates, coordinatesEnd:Coordinates){
