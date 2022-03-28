@@ -64,7 +64,7 @@ test('place ship XL at empty board', () => {
     const ship1 = Ship.createShip(ShipType.xxl);
     const ship2 = Ship.createShip(ShipType.xxl);
     
-    ship1.assignToBoardXY({x:1,y:1},{x:5,y:1});
+    ship1.assignToBoardXY({x:1,y:2},{x:5,y:2});
     board.setOccupier(ship1);
 
     const funcCauseError = () =>{

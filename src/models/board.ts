@@ -36,7 +36,7 @@ class Board{
         }
 
         if(sameLineInX){
-            for(let i= startField.x; i<=endField.y;i++){
+            for(let i= startField.y; i<=endField.y;i++){
                 const field = this.fields.find(field=> field.y == i && field.x == startField.x) as Coordinates;
                 
                 if(field.isOccupied){
@@ -62,20 +62,22 @@ class Board{
         }
     }
 
-    public isOccupiedRange(fromX:number,toX:number, y:number){
-        for(let i = fromX; i<=toX;i++ ){
-            if(this.fields.find(field=>field.x == i && field.y == y)?.isOccupied){
-                return true;
+    public isOccupiedRange(x:number,y:number,length:number){
+        let result = false;
+        for(let i=x;i<=length+x;i++){
+            if(this.isOccupiedXY({x:i,y:y})){
+                result = true;
+                break;
             }
-        }
+        }        
 
-        for(let i = fromX; i<=toX;i++ ){
-            if(this.fields.find(field=>field.x == y && field.y == i)?.isOccupied){
-                return true;
+        for(let i=y;i<=length+y;i++){
+            if(this.isOccupiedXY({x:x,y:i})){
+                result = true;
+                break;
             }
-        }
-        
-        return false;
+        }        
+        return result;
     }
 
 

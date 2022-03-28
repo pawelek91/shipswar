@@ -43,19 +43,13 @@ class ShipPlacerSimulator{
 
     getCoordintesByLength(board:Board,shipLength:number){
         let isOccupied = false;
-        let x = this.getRandomFieldValue();
-        let y = this.getRandomFieldValue();
-        let triesOnY = 0;        
-        
+        let x = 0;
+        let y = 0;
         do
         {
+            y = this.getRandomFieldValue();
             x = this.getRandomFieldValue();
-            isOccupied = board.isOccupiedRange(x,x+shipLength,y);
-            if(triesOnY > 3){
-                y = this.getRandomFieldValue();
-                triesOnY = 0;
-            }
-            triesOnY++;
+            isOccupied = board.isOccupiedRange(x,y,shipLength);
         }
         while(x+shipLength > Board.xLength-1 || isOccupied)
         return {x,y};
