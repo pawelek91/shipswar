@@ -62,6 +62,21 @@ class Board{
         }
     }
 
+    public isOccupiedRange(fromX:number,toX:number, y:number){
+        for(let i = fromX; i<=toX;i++ ){
+            if(this.fields.find(field=>field.x == i && field.y == y)?.isOccupied){
+                return true;
+            }
+        }
+
+        for(let i = fromX; i<=toX;i++ ){
+            if(this.fields.find(field=>field.x == y && field.y == i)?.isOccupied){
+                return true;
+            }
+        }
+        
+        return false;
+    }
 
 
     public isOccupied(coordinates:Coordinates){
