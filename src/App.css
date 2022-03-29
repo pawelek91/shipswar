@@ -5,3 +5,4 @@
   .chess-board .dark { background: #000; }
   .column{width: 40%; float:left}
   .ship{background: greenyellow;}
+  .shoot{background: red;}

@@ -15,8 +15,8 @@ class ShipBattleSimulator{
         }
         while(player1.hasLost() == false && player2.hasLost()==false)
     }
-
-    private simulateShoot(player:Player, attackedPlayer:Player){
+    
+    public async simulateShoot(player:Player, attackedPlayer:Player){
         const allowedFields = player.boardToShoot.fields.filter(x=>!x.isOccupied);
         let field = null;
         do{

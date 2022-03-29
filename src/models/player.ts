@@ -85,6 +85,4 @@ export default class Player{
     public hasLost():boolean{
         return this.ships.every(ship=>ship.isDestroyed);
     }
-
-
 }
