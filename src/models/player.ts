@@ -74,9 +74,15 @@ export default class Player{
         };
 
         const ship = shootedField.occupier;
-        ship.fieldType = ShootType.Goal;
-        const shootedShipCoordinates = this.boardWithShips.fields.filter(x=>x.occupier?.id == ship.id);
-        if(shootedShipCoordinates.every(field=>field.occupier?.fieldType == ShootType.Goal)){
+        
+        ship.fields.forEach(field=>{
+            if(field.x == coordinate.x && field.y == coordinate.y){
+                field.isShooted=true;
+            }
+        })
+        
+
+        if(ship.fields.every(field=>field.isShooted)){
             const playerShip = this.ships.find(x=>x.id == ship.id) as Ship;
             playerShip.isDestroyed = true;
         }

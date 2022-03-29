@@ -5,6 +5,7 @@ export default interface Coordinates{
     y:number;
     isOccupied?:boolean;
     occupier:IOccupier;
+    isShooted?:boolean;
 }
 
 export interface CoordinatesXY{
